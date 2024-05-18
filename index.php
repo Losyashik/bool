@@ -54,7 +54,7 @@ include_once("./components/header.php")
             for ($data = []; $row = $result->fetch_assoc(); $data[] = $row);
             $len = count($data);
             foreach ($data as $key => $elem) {
-                if (($key % 4) == 0) {
+                if (($key % 2) == 0) {
                     $result = '<div class="comments_slide">';
                 }
                 $result .= '
