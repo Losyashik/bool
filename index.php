@@ -30,28 +30,36 @@ include_once("./components/header.php")
         <a href="catalog.php" class="link gallery_all__link">Посмотреть все наши работы</a>
     </section>
     <section class=" section section_light how_we_work" id="how_we_work">
-        <h1 class="heading how_we_work">Как мы работаем</h1>
+        <h1 class="heading how_we_work-heading">Как мы работаем</h1>
         <div class="how_we_work__body">
             <div class="how_we_work__item ">
                 <div class="item_block">Вы оставляете заявку</div>
-                <div class="item_block">-Мы созваниваемся<br />
-                    -Проводим консультация, оформление технического задания на проектирование</div>
-            </div>
-            <div class="how_we_work__item">
-                <div class="item_block">Проектирование пространства</div>
-                <div class="item_block">
-                    -Созданём планировочное решения с расстановкой мебели (2-3 варианта)<br />
-                    -Проводим анализ стилевого решения пространства (подбор возможных вариантов
-                    интерьера)
+                <div class="item_block item_block--right">
+                    -Мы созваниваемся<br />
+                    -Проводим консультация, оформление технического задания на проектирование
                 </div>
             </div>
             <div class="how_we_work__item">
-                <div class="item_block">Приезжаем и проводим замери обговариваем все детали</div>
-                <div class="item_block">Приезжаем и проводим замери обговариваем все детали</div>
+                <div class="item_block">Проектирование пространства</div>
+                <div class="item_block item_block--right">
+                    -Созданём планировочное решения с расстановкой мебели (2-3 варианта)<br />
+                    -Проводим анализ стилевого решения пространства (подбор возможных вариантов интерьера)
+                </div>
             </div>
             <div class="how_we_work__item">
-                <div class="item_block">Приезжаем и проводим замери обговариваем все детали</div>
-                <div class="item_block">Создаем индевидуальный дизайн для вас</div>
+                <div class="item_block">Визуализация</div>
+                <div class="item_block item_block--right">
+                    -Фотореалистичная визуализация каждого помещения<br />
+                    -Согласование эскизов с заказчиком
+                </div>
+            </div>
+            <div class="how_we_work__item">
+                <div class="item_block">Комплектация</div>
+                <div class="item_block item_block--right">
+                    -Подбор мебели, отделочных материалов и оборудования<br />
+                    -Выезд дизайнера вместе с вами на подборы<br />
+                    -Подготовка КП от партнеров поставщиков
+                </div>
             </div>
         </div>
     </section>
@@ -59,11 +67,11 @@ include_once("./components/header.php")
         <h1 class="heading comments_heading">Отзывы</h1>
         <div class="comments_body slider">
             <?php
-            $result = $link->query("SELECT `name` ,`text` FROM comments ORDER BY `time` ASC");
+            $result = $link->query("SELECT `name` ,`text` FROM comments WHERE approval = '1' ORDER BY `time` ASC");
             for ($data = []; $row = $result->fetch_assoc(); $data[] = $row);
             $len = count($data);
             foreach ($data as $key => $elem) {
-                if (($key % 2) == 0) {
+                if (($key % 4) == 0) {
                     $result = '<div class="comments_slide">';
                 }
                 $result .= '
@@ -84,9 +92,9 @@ include_once("./components/header.php")
                 <form class="comments_add_form" method="post">
                     <h4 class="comments_add_form__heading">Оставить отзыв</h4>
                     <div class="comments_add_form__body">
-                        <input type="text" name="name" placeholder="Ваше имя">
-                        <input type="email" name="mail" placeholder="E-mail">
-                        <textarea name="text" placeholder="Текст коментария"></textarea>
+                        <input required type="text" name="name" placeholder="Ваше имя">
+                        <input required type="email" name="mail" placeholder="E-mail">
+                        <textarea required name="text" maxlength="400" placeholder="Текст коментария"></textarea>
                     </div>
                     <button type="submit" name="comment" value="1">Отправить</button>
                 </form>

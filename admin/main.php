@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 if (empty($_SESSION['art_user'])) {
     header("Location:./");
 }
@@ -8,6 +9,21 @@ $link = mysqli_connect('', 'root', '', 'boolatova');
 if (isset($_GET['exit'])) {
     session_unset();
     header("Location:./../");
+}
+if (isset($_POST['commentApproval'])) {
+    $query = "UPDATE `comments` SET `approval`='1' WHERE `id`= {$_POST['commentApproval']}";
+    $link->query($query);
+    header("Location:./main.php");
+}
+if (isset($_POST['commentDelete'])) {
+    $query = "DELETE FROM `comments` WHERE `id`= {$_POST['commentDelete']}";
+    $link->query($query);
+    header("Location:./main.php");
+}
+if (isset($_POST['userDelete'])) {
+    $query = "DELETE FROM `user` WHERE `id`= {$_POST['userDelete']}";
+    $link->query($query);
+    header("Location:./main.php");
 }
 if (isset($_POST['name']) and isset($_POST['login']) and isset($_POST['password']) and isset($_POST['passwordDbl'])) {
 
@@ -187,21 +203,29 @@ if ((!empty($_POST['name']))  and (!empty($_POST['discription']))) {
                     <th class="administrators_list__ceil table_ceil">Имя</th>
                     <th class="administrators_list__ceil table_ceil">Почта</th>
                     <th class="administrators_list__ceil table_ceil">Коментарий</th>
+                    <th class="administrators_list__ceil table_ceil">Одобрение</th>
                     <th class="administrators_list__ceil table_ceil">Удаление</th>
                 </tr>
                 <?php
                 $result = $link->query("SELECT * FROM comments ORDER BY `time` ASC");
                 for ($data = []; $row = $result->fetch_assoc(); $data[] = $row);
-                foreach ($data as $elem) {
-                    echo
-                    '<tr class="comments_list__row table_row">
-                        <td class="comments_list__ceil table_ceil">' . $elem['name'] . '</td>
-                        <td class="comments_list__ceil table_ceil">' . $elem['mail'] . '</td>
-                        <td class="comments_list__ceil table_ceil">' . $elem['text'] . '</td>
+                foreach ($data as $elem) { ?>
+                    <tr class="comments_list__row table_row">
+                        <td class="comments_list__ceil table_ceil"><?= $elem['name'] ?></td>
+                        <td class="comments_list__ceil table_ceil"><?= $elem['mail'] ?></td>
+                        <td class="comments_list__ceil table_ceil"><?= $elem['text'] ?></td>
                         <td class="comments_list__ceil table_ceil">
-                            <form method="post"><button type="submit" name="commentDelete" value="' . $elem['id'] . '">Удалить</button></form>
+                            <?php if (!$elem['approval']) { ?>
+                                <form method="post"><button type="submit" name="commentApproval" value="<?= $elem['id'] ?>">Одобрить</button></form>
+                            <?php } else { ?>
+                                Одобрено
+                            <?php } ?>
                         </td>
-                    </tr>';
+                        <td class="comments_list__ceil table_ceil">
+                            <form method="post"><button type="submit" name="commentDelete" value="<?= $elem['id'] ?>">Удалить</button></form>
+                        </td>
+                    </tr>
+                <?php
                 } ?>
             </table>
         </sectiion>
@@ -235,7 +259,7 @@ if ((!empty($_POST['name']))  and (!empty($_POST['discription']))) {
                         <td class="administrators_list__ceil table_ceil">' . $elem['login'] . '</td>
                         <td class="administrators_list__ceil table_ceil">' . $elem['passwordView'] . '</td>
                         <td class="administrators_list__ceil table_ceil">
-                            <form method="post"><button type="submit" name="commentDelete" value="' . $elem['id'] . '">Удалить</button></form>
+                            <form method="post"><button type="submit" name="userDelete" value="' . $elem['id'] . '">Удалить</button></form>
                         </td>
                     </tr>';
                 } ?>
