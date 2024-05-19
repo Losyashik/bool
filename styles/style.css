@@ -40,7 +40,7 @@ img {
   color: white;
   height: 10vh;
   position: absolute;
-  /* top: 0; */
+  top: 0;
   z-index: 15;
 }
 @media (max-width: 1024px) {
@@ -284,44 +284,6 @@ img {
   width: 100%;
   display: flex;
   position: relative;
-}
-.main .how_we_work__item--left {
-  justify-content: flex-start;
-}
-.main .how_we_work__item--left .item_block {
-  border-radius: 40px 0 0 40px;
-}
-@media (max-width: 1024px) {
-  .main .how_we_work__item--left .item_block {
-    border-radius: 40px;
-  }
-}
-.main .how_we_work__item--right {
-  justify-content: flex-end;
-}
-.main .how_we_work__item--right .item_block {
-  border-radius: 0 40px 40px 0;
-}
-@media (max-width: 1024px) {
-  .main .how_we_work__item--right .item_block {
-    border-radius: 40px;
-  }
-}
-.main .how_we_work__item:first-child .item_block {
-  border-radius: 40px 40px 0;
-}
-@media (max-width: 1024px) {
-  .main .how_we_work__item:first-child .item_block {
-    border-radius: 40px;
-  }
-}
-.main .how_we_work__item:last-child .item_block {
-  border-radius: 0 40px 40px;
-}
-@media (max-width: 1024px) {
-  .main .how_we_work__item:last-child .item_block {
-    border-radius: 40px;
-  }
 }
 .main .how_we_work__item .item_block {
   margin: 1vh 0;

@@ -3,7 +3,7 @@ include_once("./components/header.php")
 ?>
 <title>Арт-интерьер</title>
 <header class="header">
-    <img src="./images/logo.png" class="header_logo"/>
+    <img src="./images/logo.png" class="header_logo" />
     <h2 class="header_slogan">Студия дизайна интерьера для вас</h2>
 
 </header>
@@ -32,16 +32,25 @@ include_once("./components/header.php")
     <section class=" section section_light how_we_work" id="how_we_work">
         <h1 class="heading how_we_work">Как мы работаем</h1>
         <div class="how_we_work__body">
-            <div class="how_we_work__item how_we_work__item--left ">
+            <div class="how_we_work__item ">
                 <div class="item_block">Вы оставляете заявку</div>
+                <div class="item_block">-Мы созваниваемся<br />
+                    -Проводим консультация, оформление технического задания на проектирование</div>
             </div>
-            <div class="how_we_work__item how_we_work__item--right">
-                <div class="item_block">Мы созваниваемся и договариваемся о замере</div>
+            <div class="how_we_work__item">
+                <div class="item_block">Проектирование пространства</div>
+                <div class="item_block">
+                    -Созданём планировочное решения с расстановкой мебели (2-3 варианта)<br />
+                    -Проводим анализ стилевого решения пространства (подбор возможных вариантов
+                    интерьера)
+                </div>
             </div>
-            <div class="how_we_work__item how_we_work__item--left">
+            <div class="how_we_work__item">
+                <div class="item_block">Приезжаем и проводим замери обговариваем все детали</div>
                 <div class="item_block">Приезжаем и проводим замери обговариваем все детали</div>
             </div>
-            <div class="how_we_work__item how_we_work__item--right">
+            <div class="how_we_work__item">
+                <div class="item_block">Приезжаем и проводим замери обговариваем все детали</div>
                 <div class="item_block">Создаем индевидуальный дизайн для вас</div>
             </div>
         </div>
