@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Май 01 2023 г., 09:17
--- Версия сервера: 10.4.24-MariaDB
--- Версия PHP: 8.1.6
+-- Время создания: Май 21 2024 г., 14:08
+-- Версия сервера: 10.4.28-MariaDB
+-- Версия PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -35,7 +35,7 @@ CREATE TABLE `application` (
   `mail` varchar(100) NOT NULL,
   `adress` text NOT NULL,
   `time` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Дамп данных таблицы `application`
@@ -56,7 +56,7 @@ CREATE TABLE `catalog` (
   `discription` text NOT NULL,
   `src` text NOT NULL,
   `time` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Дамп данных таблицы `catalog`
@@ -77,20 +77,19 @@ CREATE TABLE `comments` (
   `name` varchar(50) NOT NULL,
   `mail` varchar(60) NOT NULL,
   `text` text NOT NULL,
-  `time` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `time` timestamp NOT NULL DEFAULT current_timestamp(),
+  `approval` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Дамп данных таблицы `comments`
 --
 
-INSERT INTO `comments` (`id`, `name`, `mail`, `text`, `time`) VALUES
-(1, 'ГОСТ 123', '', 'zgxhdfghbjkklolpk;jlkhjgyfxdb iugbkl;kjbhvcgfxdfbv iogfxfdcvuhjiolkjhgfh iujchfguhilgkhcgvgh iughihgucf', '2023-04-28 12:40:05'),
-(2, 'ГОСТ 123', '', 'zgxhdfghbjkklolpk;jlkhjgyfxdb iugbkl;kjbhvcgfxdfbv iogfxfdcvuhjiolkjhgfh iujchfguhilgkhcgvgh iughihgucf', '2023-04-28 12:40:35'),
-(3, 'asdasdasdads', 'Ed@dma.ru', 'asasdas asdasdasds asasdasdasdsa asdas ds asdasdasddas asdasdasdasd asdasdasda sdasdsadasdasds asdasdasdasd adasdasdasd dasdasdas asdasdasdasd asdasdasdasd as', '2023-04-30 23:17:22'),
-(4, 'asdasdasdads', 'Ed@dma.ru', 'asasdas asdasdasds asasdasdasdsa asdas ds asdasdasddas asdasdasdasd asdasdasda sdasdsadasdasds asdasdasdasd adasdasdasd dasdasdas asdasdasdasd asdasdasdasd as', '2023-04-30 23:18:35'),
-(5, 'asdasdasdads', 'Ed@dma.ru', 'asasdas asdasdasds asasdasdasdsa asdas ds asdasdasddas asdasdasdasd asdasdasda sdasdsadasdasds asdasdasdasd adasdasdasd dasdasdas asdasdasdasd asdasdasdasd as', '2023-04-30 23:19:51'),
-(6, 'asdasdas', 'Ed@dma.ru', 'asdasd asdasdasd asdsadasds asdasdasdasdasdasd asd asd asdassdsasdas assadasd', '2023-04-30 23:28:35');
+INSERT INTO `comments` (`id`, `name`, `mail`, `text`, `time`, `approval`) VALUES
+(11, 'Тестер', 'user@user.ru', 'Внезапно, активно развивающиеся страны третьего мира объективно рассмотрены соответствующими инстанциями. Также как существующая теория играет важную роль в формировании позиций, занимаемых участниками в отношении поставленных задач. С другой стороны, сплочённость команды профессионалов предопределяет высокую востребованность поставленных обществом задач.', '2024-05-19 20:08:34', 1),
+(14, 'Фундучная груша', 'ad@ad.ru', 'Противоположная точка зрения подразумевает, что независимые государства набирают популярность среди определенных слоев населения, а значит, должны быть рассмотрены исключительно в разрезе маркетинговых и финансовых предпосылок. Современные технологии достигли такого уровня, что новая модель организационной деятельности обеспечивает актуальность кластеризации усилий. Разнообразный и богатый опыт го', '2024-05-19 20:25:14', 1),
+(15, 'Футболки', 'Admin@admin.ru', 'В рамках спецификации современных стандартов, элементы политического процесса рассмотрены исключительно в разрезе маркетинговых и финансовых предпосылок. С другой стороны, семантический разбор внешних противодействий позволяет выполнить важные задания по разработке инновационных методов управления процессами. Безусловно, новая модель организационной деятельности требует анализа первоочередных треб', '2024-05-19 20:28:50', 1),
+(16, 'Тестер', 'ad@ad.ru', 'В рамках спецификации современных стандартов, элементы политического процесса рассмотрены исключительно в разрезе маркетинговых и финансовых предпосылок. С другой стороны, семантический разбор внешних противодействий позволяет выполнить важные задания по разработке инновационных методов управления процессами. Безусловно, новая модель организационной деятельности требует анализа первоочередных треб', '2024-05-19 20:30:05', 1);
 
 -- --------------------------------------------------------
 
@@ -104,7 +103,7 @@ CREATE TABLE `user` (
   `login` varchar(100) NOT NULL,
   `password` text NOT NULL,
   `passwordView` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Дамп данных таблицы `user`
@@ -161,13 +160,13 @@ ALTER TABLE `catalog`
 -- AUTO_INCREMENT для таблицы `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
